@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://0wkr64r30xxd"]
+
+[ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="1_daupv"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_7v5iu"]
+[ext_resource type="PackedScene" uid="uid://dm2y4b5knh13f" path="res://scenes/orange.tscn" id="2_y814f"]
+[ext_resource type="PackedScene" uid="uid://dwatgmw27qdx2" path="res://scenes/spawner.tscn" id="4_f31pa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nr5q"]
+size = Vector2(128, 128)
+
+[node name="test_scene" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(565, 635)
+scale = Vector2(17.8641, 0.158701)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_daupv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_5nr5q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 325)
+script = ExtResource("2_7v5iu")
+
+[node name="orange" parent="." instance=ExtResource("2_y814f")]
+position = Vector2(465, 201)
+
+[node name="spawner" parent="." node_paths=PackedStringArray("camera", "test_sprite") instance=ExtResource("4_f31pa")]
+camera = NodePath("../Camera2D")
+test_sprite = NodePath("../Icon")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(660, 359)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_daupv")
