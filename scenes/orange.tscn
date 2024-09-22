@@ -7,6 +7,7 @@
 radius = 20.0
 
 [node name="orange" type="RigidBody2D"]
+mass = 0.008
 script = ExtResource("1_imgec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,3 +16,5 @@ texture = ExtResource("2_dgc2t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_60l5g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://0wkr64r30xxd"]
+[gd_scene load_steps=7 format=3 uid="uid://0wkr64r30xxd"]
 
 [ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="1_daupv"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_7v5iu"]
 [ext_resource type="PackedScene" uid="uid://dm2y4b5knh13f" path="res://scenes/orange.tscn" id="2_y814f"]
 [ext_resource type="PackedScene" uid="uid://dwatgmw27qdx2" path="res://scenes/spawner.tscn" id="4_f31pa"]
+[ext_resource type="PackedScene" uid="uid://b57w4ahy1i3ta" path="res://scenes/tower.tscn" id="5_fs2ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nr5q"]
 size = Vector2(128, 128)
@@ -24,14 +25,25 @@ shape = SubResource("RectangleShape2D_5nr5q")
 position = Vector2(576, 325)
 script = ExtResource("2_7v5iu")
 
-[node name="orange" parent="." instance=ExtResource("2_y814f")]
-position = Vector2(465, 201)
-
-[node name="spawner" parent="." node_paths=PackedStringArray("camera", "test_sprite") instance=ExtResource("4_f31pa")]
+[node name="spawner" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_f31pa")]
 camera = NodePath("../Camera2D")
-test_sprite = NodePath("../Icon")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(660, 359)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("1_daupv")
+
+[node name="tower" parent="." instance=ExtResource("5_fs2ga")]
+
+[node name="orange" parent="tower" node_paths=PackedStringArray("tower") instance=ExtResource("2_y814f")]
+position = Vector2(590, 252)
+collision_mask = 7
+in_tower = true
+tower = NodePath("..")
+
+[node name="orange2" parent="tower" node_paths=PackedStringArray("tower", "partner") instance=ExtResource("2_y814f")]
+position = Vector2(243, 263)
+collision_mask = 7
+in_tower = true
+tower = NodePath("..")
+partner = NodePath("../orange")
