@@ -1,7 +1,7 @@
 extends Label
 class_name Mini_Score
 
-@export var float_speed: float = 10
+@export var float_speed: float = 20
 @export var lifetime: float = 1
 
 @onready var timer: Timer = $Timer

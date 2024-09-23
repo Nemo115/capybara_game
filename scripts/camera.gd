@@ -13,6 +13,9 @@ class_name Game_Camera
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 
+func _enter_tree() -> void:
+	Globals.camera = self
+
 func _ready() -> void:
 	Globals.tower.added_obj.connect(new_obj)
 
@@ -42,7 +45,7 @@ func calculate_spawn_coord(offset: float = 0) -> Vector2:
 
 func zoom_out():
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(self, "zoom", zoom - Vector2(0.01, 0.01), 0.5)
+	tween.tween_property(self, "zoom", clamp(zoom - Vector2(0.01, 0.01), Vector2(0.45, 0.45), zoom), 0.5)
 	print("zoom changed")
 
 func new_obj():
