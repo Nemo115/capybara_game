@@ -5,7 +5,9 @@ class_name Tower
 
 @export var obj_tower: Array[Falling_OBJ]
 
-func _ready() -> void:
+signal added_obj
+
+func _enter_tree() -> void:
 	Globals.tower = self
 
 func add_obj(obj: Falling_OBJ):
@@ -19,6 +21,8 @@ func add_obj(obj: Falling_OBJ):
 		
 		Globals.score += obj.score
 		print("score: ", Globals.score)
+		
+		added_obj.emit()
 
 #Look through the objects and find which one has the smallest y value => greatest position
 func get_highest_obj()->Falling_OBJ:

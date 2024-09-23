@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccsp371h38sbk"]
+
+[ext_resource type="Script" path="res://scripts/score_tag.gd" id="1_twisx"]
+
+[node name="score_tag" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: 100"
+script = ExtResource("1_twisx")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="timeout"]
