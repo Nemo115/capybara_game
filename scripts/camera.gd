@@ -4,12 +4,32 @@ class_name Game_Camera
 @export var target_obj: Falling_OBJ
 @export var smoothing: float = 0.08
 
+##Camera Shake variables
+@export_group("Camera Shake")
+
+@export var randomStrength: float = 30.0
+@export var shakeFade: float = 5.0
+
+var rng = RandomNumberGenerator.new()
+var shake_strength: float = 0.0
+
 func _ready() -> void:
 	Globals.tower.added_obj.connect(new_obj)
 
 func _physics_process(delta: float) -> void:
 	if target_obj:
 		position = lerp(position, target_obj.position, smoothing)
+	
+	##Camera Shake Logic
+	if shake_strength > 0:
+		shake_strength = lerp(shake_strength, 0.0, shakeFade * delta)
+		offset = randomOffset()
+
+##Camera Shake Functions
+func apply_shake():
+	shake_strength = randomStrength
+func randomOffset() -> Vector2:
+	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))
 
 #Calculate where the spawner needs to be above the camera view
 #This function is accessed in the spawner.gd script
@@ -28,3 +48,4 @@ func zoom_out():
 func new_obj():
 	zoom_out()
 	target_obj = Globals.tower.get_highest_obj()
+	apply_shake()

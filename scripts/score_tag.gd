@@ -14,7 +14,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (cur_score < Globals.score):
 		timer.start(time_per_increment)
-	
 
 func timeout() -> void:
 	cur_score += 10

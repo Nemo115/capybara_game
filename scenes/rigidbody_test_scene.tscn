@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://0wkr64r30xxd"]
+[gd_scene load_steps=12 format=3 uid="uid://0wkr64r30xxd"]
 
 [ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="1_daupv"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_7v5iu"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="4_88qpl"]
 [ext_resource type="PackedScene" uid="uid://dwatgmw27qdx2" path="res://scenes/spawner.tscn" id="4_f31pa"]
 [ext_resource type="PackedScene" uid="uid://b57w4ahy1i3ta" path="res://scenes/tower.tscn" id="5_fs2ga"]
 [ext_resource type="PackedScene" uid="uid://ccsp371h38sbk" path="res://scenes/ui/score_tag.tscn" id="6_bnyq6"]
@@ -9,6 +10,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nr5q"]
 size = Vector2(128, 128)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mv3m7"]
+shader = ExtResource("4_88qpl")
+shader_parameter/r_displacement = Vector2(0, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(0, 0)
 
 [sub_resource type="GDScript" id="GDScript_b2yam"]
 
@@ -41,22 +48,12 @@ shape = SubResource("RectangleShape2D_5nr5q")
 position = Vector2(576, 325)
 script = ExtResource("2_7v5iu")
 target_obj = NodePath("../tower/orange_obj")
+randomStrength = 5.0
+shakeFade = 12.0
 
-[node name="spawner" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_f31pa")]
-camera = NodePath("../Camera2D")
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="tower" parent="." node_paths=PackedStringArray("obj_tower") instance=ExtResource("5_fs2ga")]
-joint = SubResource("PackedScene_fkm6l")
-obj_tower = [NodePath("orange_obj")]
-
-[node name="orange_obj" parent="tower" instance=ExtResource("6_pojq3")]
-position = Vector2(565, 571)
-falling = false
-in_tower = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="Camera2D/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,9 +68,29 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="score_tag" parent="CanvasLayer/Control" instance=ExtResource("6_bnyq6")]
+[node name="score_tag" parent="Camera2D/CanvasLayer/Control" instance=ExtResource("6_bnyq6")]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 21.0
 offset_right = 103.0
 offset_bottom = 44.0
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+material = SubResource("ShaderMaterial_mv3m7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="spawner" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_f31pa")]
+camera = NodePath("../Camera2D")
+
+[node name="tower" parent="." node_paths=PackedStringArray("obj_tower") instance=ExtResource("5_fs2ga")]
+joint = SubResource("PackedScene_fkm6l")
+obj_tower = [NodePath("orange_obj")]
+
+[node name="orange_obj" parent="tower" instance=ExtResource("6_pojq3")]
+position = Vector2(565, 571)
+falling = false
+in_tower = true
