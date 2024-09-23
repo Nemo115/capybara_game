@@ -16,14 +16,13 @@ func add_obj(obj: Falling_OBJ):
 		obj.in_tower = true
 		
 		obj_tower.append(obj)
+		
+		Globals.score += obj.score
+		print("score: ", Globals.score)
 
 #Look through the objects and find which one has the smallest y value => greatest position
 func get_highest_obj()->Falling_OBJ:
 	return obj_tower[len(obj_tower) - 1]
-
-#Calculate the middle position of the tower
-func get_middle_pos():
-	pass
 
 func _process(delta: float) -> void:
 	pass
