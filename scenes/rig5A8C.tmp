@@ -10,6 +10,14 @@
 size = Vector2(128, 128)
 
 [sub_resource type="GDScript" id="GDScript_b2yam"]
+script/source = "extends GrooveJoint2D
+class_name OBJ_Joint
+
+func attach(top: Falling_Object, bot: Falling_Object):
+	global_position = top.global_position
+	node_a = top.get_path();
+	node_b = bot.get_path();
+"
 
 [sub_resource type="PackedScene" id="PackedScene_fkm6l"]
 _bundled = {

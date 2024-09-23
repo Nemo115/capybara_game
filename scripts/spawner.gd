@@ -18,6 +18,6 @@ func _process(delta: float) -> void:
 	spawn_coord = camera.calculate_spawn_coord(2)
 
 func spawn_obj(i:int = 0):
-	var obj: Falling_Object = objects[i].instantiate()
+	var obj: Falling_OBJ = objects[i].instantiate()
 	obj.global_position = spawn_coord
 	get_parent().add_child(obj)

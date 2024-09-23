@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dovoe2jp08ue0"]
+
+[ext_resource type="Script" path="res://scripts/falling_obj.gd" id="1_dq8fs"]
+[ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="2_pgims"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f2du"]
+radius = 12.0
+
+[node name="orange_obj" type="Area2D"]
+script = ExtResource("1_dq8fs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_pgims")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1f2du")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
