@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 func spawn_obj(i:int = 0):
 	var obj: Falling_OBJ = objects[i].instantiate()
 	obj.global_position = spawn_coord
-	get_parent().add_child(obj)
+	Globals.game_tree.add_child(obj)

@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 		offset = randomOffset()
 
 ##Camera Shake Functions
-func apply_shake():
-	shake_strength = randomStrength
+func apply_shake(strength: float):
+	shake_strength = strength
 func randomOffset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strength, shake_strength), rng.randf_range(-shake_strength, shake_strength))
 
@@ -48,4 +48,4 @@ func zoom_out():
 func new_obj():
 	zoom_out()
 	target_obj = Globals.tower.get_highest_obj()
-	apply_shake()
+	apply_shake(Globals.tower.get_highest_obj().land_impact)

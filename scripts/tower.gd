@@ -14,15 +14,17 @@ func add_obj(obj: Falling_OBJ):
 	if not obj.in_tower:
 		var top_obj = get_highest_obj()
 		
-		add_child(obj)
+		obj.reparent(self, true)
+		
 		obj.in_tower = true
 		
 		obj_tower.append(obj)
 		
 		Globals.score += obj.score
-		print("score: ", Globals.score)
+		#print("score: ", Globals.score)
 		
 		added_obj.emit()
+		print("children: ",get_child_count())
 
 #Look through the objects and find which one has the smallest y value => greatest position
 func get_highest_obj()->Falling_OBJ:

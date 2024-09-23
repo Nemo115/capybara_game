@@ -8,6 +8,8 @@ class_name Falling_OBJ
 
 @export var in_tower: bool
 
+@export var land_impact: float = 5
+
 func _physics_process(delta: float) -> void:
 	if falling:
 		position.y += fall_speed * delta * 9.8

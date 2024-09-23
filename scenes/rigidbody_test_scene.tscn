@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://0wkr64r30xxd"]
+[gd_scene load_steps=14 format=3 uid="uid://0wkr64r30xxd"]
 
+[ext_resource type="Script" path="res://scripts/game_tree.gd" id="1_d7ehg"]
 [ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="1_daupv"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_7v5iu"]
 [ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="4_88qpl"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b57w4ahy1i3ta" path="res://scenes/tower.tscn" id="5_fs2ga"]
 [ext_resource type="PackedScene" uid="uid://ccsp371h38sbk" path="res://scenes/ui/score_tag.tscn" id="6_bnyq6"]
 [ext_resource type="PackedScene" uid="uid://dovoe2jp08ue0" path="res://scenes/orange_obj.tscn" id="6_pojq3"]
+[ext_resource type="PackedScene" uid="uid://ltyh411b2im2" path="res://scenes/capybara.tscn" id="6_t28de"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nr5q"]
 size = Vector2(128, 128)
@@ -33,6 +35,7 @@ _bundled = {
 }
 
 [node name="test_scene" type="Node2D"]
+script = ExtResource("1_d7ehg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(565, 635)
@@ -47,9 +50,8 @@ shape = SubResource("RectangleShape2D_5nr5q")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target_obj")]
 position = Vector2(576, 325)
 script = ExtResource("2_7v5iu")
-target_obj = NodePath("../tower/orange_obj")
+target_obj = NodePath("../capybara/tower/orange_obj")
 randomStrength = 5.0
-shakeFade = 12.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
@@ -86,11 +88,16 @@ grow_vertical = 2
 [node name="spawner" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_f31pa")]
 camera = NodePath("../Camera2D")
 
-[node name="tower" parent="." node_paths=PackedStringArray("obj_tower") instance=ExtResource("5_fs2ga")]
+[node name="capybara" parent="." instance=ExtResource("6_t28de")]
+position = Vector2(565, 604)
+move_speed = 250.0
+
+[node name="tower" parent="capybara" node_paths=PackedStringArray("obj_tower") instance=ExtResource("5_fs2ga")]
+position = Vector2(-566, -615)
 joint = SubResource("PackedScene_fkm6l")
 obj_tower = [NodePath("orange_obj")]
 
-[node name="orange_obj" parent="tower" instance=ExtResource("6_pojq3")]
+[node name="orange_obj" parent="capybara/tower" instance=ExtResource("6_pojq3")]
 position = Vector2(565, 571)
 falling = false
 in_tower = true
