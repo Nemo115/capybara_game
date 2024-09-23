@@ -90,7 +90,6 @@ camera = NodePath("../Camera2D")
 
 [node name="capybara" parent="." instance=ExtResource("6_t28de")]
 position = Vector2(565, 604)
-move_speed = 250.0
 
 [node name="tower" parent="capybara" node_paths=PackedStringArray("obj_tower") instance=ExtResource("5_fs2ga")]
 position = Vector2(-566, -615)

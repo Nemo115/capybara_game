@@ -3,6 +3,8 @@ extends Node
 All Global variables are put here
 '''
 
+signal game_over
+
 var spawner: Spawner
 var tower: Tower
 var camera: Game_Camera
