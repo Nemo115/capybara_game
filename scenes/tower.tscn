@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b57w4ahy1i3ta"]
+[gd_scene load_steps=3 format=3 uid="uid://b57w4ahy1i3ta"]
 
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_tvfi2"]
+[ext_resource type="PackedScene" uid="uid://ca4ytmebhrq7j" path="res://scenes/ui/mini_score.tscn" id="2_yboi7"]
 
 [node name="tower" type="Node2D"]
 script = ExtResource("1_tvfi2")
+mini_score = ExtResource("2_yboi7")

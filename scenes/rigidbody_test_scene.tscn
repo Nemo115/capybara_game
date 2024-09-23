@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0wkr64r30xxd"]
+[gd_scene load_steps=12 format=3 uid="uid://0wkr64r30xxd"]
 
 [ext_resource type="Script" path="res://scripts/game_tree.gd" id="1_d7ehg"]
 [ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="1_daupv"]
@@ -18,21 +18,6 @@ shader = ExtResource("4_88qpl")
 shader_parameter/r_displacement = Vector2(0, 0)
 shader_parameter/g_displacement = Vector2(0, 0)
 shader_parameter/b_displacement = Vector2(0, 0)
-
-[sub_resource type="GDScript" id="GDScript_b2yam"]
-
-[sub_resource type="PackedScene" id="PackedScene_fkm6l"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("GrooveJoint2D", "position", "disable_collision", "length", "initial_offset", "script"),
-"node_count": 1,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 0, 0, -1, 5, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 0),
-"variants": [Vector2(585, 254), false, 35.0, 1.0, SubResource("GDScript_b2yam")],
-"version": 3
-}
 
 [node name="test_scene" type="Node2D"]
 script = ExtResource("1_d7ehg")
@@ -93,7 +78,6 @@ position = Vector2(565, 604)
 
 [node name="tower" parent="capybara" node_paths=PackedStringArray("obj_tower") instance=ExtResource("5_fs2ga")]
 position = Vector2(-566, -615)
-joint = SubResource("PackedScene_fkm6l")
 obj_tower = [NodePath("orange_obj")]
 
 [node name="orange_obj" parent="capybara/tower" instance=ExtResource("6_pojq3")]
