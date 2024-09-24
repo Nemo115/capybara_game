@@ -24,3 +24,9 @@ func _on_area_entered(area: Area2D) -> void:
 			##Player toppled the tower
 			print("Game Over")
 			Globals.game_over.emit()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Ground:
+		Globals.game_over.emit()
+		falling = false

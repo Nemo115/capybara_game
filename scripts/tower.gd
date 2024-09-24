@@ -29,5 +29,7 @@ func add_obj(obj: Falling_OBJ):
 func get_highest_obj()->Falling_OBJ:
 	return obj_tower[len(obj_tower) - 1]
 
-func _process(delta: float) -> void:
-	pass
+func topple():
+	for obj in obj_tower:
+		obj.in_tower = false
+		obj.falling = true
