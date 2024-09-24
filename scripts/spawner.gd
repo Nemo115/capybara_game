@@ -1,8 +1,6 @@
 extends Node
 class_name Spawner
 
-@export var camera: Game_Camera
-
 #Using an array so we can include other things
 @export var objects: Array[PackedScene]
 
@@ -15,7 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("spawned")
 
 func _process(delta: float) -> void:
-	spawn_coord = camera.calculate_spawn_coord(20)
+	spawn_coord = Globals.camera.calculate_spawn_coord(20)
 
 func spawn_obj(i:int = 0):
 	var obj: Falling_OBJ = objects[i].instantiate()
