@@ -1,18 +1,165 @@
-[gd_scene load_steps=4 format=3 uid="uid://ltyh411b2im2"]
+[gd_scene load_steps=23 format=3 uid="uid://ltyh411b2im2"]
 
 [ext_resource type="Script" path="res://scripts/capybara.gd" id="1_kmshi"]
-[ext_resource type="Texture2D" uid="uid://bmidkq0n1526n" path="res://icon.svg" id="2_cfevk"]
+[ext_resource type="Texture2D" uid="uid://du7otuscp1piw" path="res://assets/sprites/charlieTheCapybaraAnimationSheet.png" id="2_g02me"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha88t"]
-size = Vector2(60, 60)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1i0n"]
+atlas = ExtResource("2_g02me")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwif0"]
+atlas = ExtResource("2_g02me")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmev7"]
+atlas = ExtResource("2_g02me")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iipe6"]
+atlas = ExtResource("2_g02me")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wswda"]
+atlas = ExtResource("2_g02me")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64oei"]
+atlas = ExtResource("2_g02me")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr5li"]
+atlas = ExtResource("2_g02me")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8hky"]
+atlas = ExtResource("2_g02me")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrrrp"]
+atlas = ExtResource("2_g02me")
+region = Rect2(128, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t768v"]
+atlas = ExtResource("2_g02me")
+region = Rect2(192, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu7so"]
+atlas = ExtResource("2_g02me")
+region = Rect2(256, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ps2p"]
+atlas = ExtResource("2_g02me")
+region = Rect2(320, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3a41"]
+atlas = ExtResource("2_g02me")
+region = Rect2(384, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeoi5"]
+atlas = ExtResource("2_g02me")
+region = Rect2(448, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gejg8"]
+atlas = ExtResource("2_g02me")
+region = Rect2(0, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byyg4"]
+atlas = ExtResource("2_g02me")
+region = Rect2(64, 512, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dg7h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1i0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwif0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmev7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iipe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wswda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64oei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr5li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8hky")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrrrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t768v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu7so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ps2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3a41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeoi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gejg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byyg4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxh3v"]
+radius = 12.3325
+height = 42.723
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c238u"]
+radius = 8.91771
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h2dl"]
+size = Vector2(31, 10)
 
 [node name="capybara" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_kmshi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_cfevk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+texture_filter = 1
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_6dg7h")
+autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ha88t")
+[node name="CollisionShape2DBody" type="CollisionShape2D" parent="."]
+position = Vector2(-7, -21)
+rotation = -1.34383
+shape = SubResource("CapsuleShape2D_nxh3v")
+
+[node name="CollisionShape2DHead" type="CollisionShape2D" parent="."]
+position = Vector2(19, -24)
+rotation = -1.49916
+scale = Vector2(1, 0.759972)
+shape = SubResource("CapsuleShape2D_c238u")
+
+[node name="CollisionShape2DFeet" type="CollisionShape2D" parent="."]
+position = Vector2(-6.5, -5)
+shape = SubResource("RectangleShape2D_0h2dl")

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="capybara_game"
+run/main_scene="res://scenes/rigidbody_test_scene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 

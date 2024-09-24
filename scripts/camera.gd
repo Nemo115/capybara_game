@@ -43,6 +43,24 @@ func calculate_spawn_coord(offset: float = 0) -> Vector2:
 	
 	return Vector2(center_coord.x, center_coord.y - (screen_height/2) - offset)
 
+#Calculate the horizontal boundary of the camera in the negative x
+#Used by player_controller.gd to limit movement
+func calculate_boundary_left(offset: float = 0) -> Vector2:
+	var center_coord: Vector2 = get_screen_center_position()
+	var screen_height: float = get_viewport_rect().size.y / zoom.y
+	var screen_width: float = get_viewport_rect().size.x / zoom.x
+	
+	return Vector2(center_coord.x - (screen_width/2) - offset, center_coord.y)
+
+#Calculate the horizontal boundary of the camera in the positive x
+#Used by player_controller.gd to limit movement
+func calculate_boundary_right(offset: float = 0) -> Vector2:
+	var center_coord: Vector2 = get_screen_center_position()
+	var screen_height: float = get_viewport_rect().size.y / zoom.y
+	var screen_width: float = get_viewport_rect().size.x / zoom.y
+
+	return Vector2(center_coord.x + (screen_width/2) + offset, center_coord.y)
+
 func zoom_out():
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "zoom", clamp(zoom - Vector2(0.01, 0.01), Vector2(0.45, 0.45), zoom), 0.5)
